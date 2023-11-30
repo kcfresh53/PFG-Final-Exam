@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://re42rvp0htat"]
+
+[ext_resource type="Script" path="res://Scripts/Platform.gd" id="1_dp3xi"]
+[ext_resource type="Material" uid="uid://cyrt08ypgxlwd" path="res://Materials/platformMaterial.tres" id="2_0nvdc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wkg7s"]
+material = ExtResource("2_0nvdc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ak1ih"]
+size = Vector3(2.03288, 1, 2.03034)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6lduq"]
+size = Vector3(2.21621, 2.36412, 2.15227)
+
+[node name="Platform" type="RigidBody3D"]
+mass = 5.0
+freeze = true
+script = ExtResource("1_dp3xi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("BoxMesh_wkg7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ak1ih")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_6lduq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="fallTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="fallTimer" to="." method="_on_fall_timer_timeout"]
