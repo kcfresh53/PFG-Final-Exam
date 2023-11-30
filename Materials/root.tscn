@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dil6yr66btri2"]
+[gd_scene load_steps=15 format=3 uid="uid://dil6yr66btri2"]
 
 [ext_resource type="Script" path="res://Scripts/Platform.gd" id="1_p1x0n"]
 [ext_resource type="Material" uid="uid://cyrt08ypgxlwd" path="res://Materials/platformMaterial.tres" id="2_7rpvf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://re42rvp0htat" path="res://Materials/platform.tscn" id="4_771as"]
 [ext_resource type="Script" path="res://Scripts/StartScreen.gd" id="5_twqee"]
 [ext_resource type="Script" path="res://Scripts/GameOver.gd" id="6_5u8hb"]
+[ext_resource type="PackedScene" uid="uid://bxgvfhdqjurp5" path="res://Materials/platform_spawner.tscn" id="6_dr8od"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3pbvk"]
 
@@ -63,7 +64,9 @@ player = NodePath("..")
 transform = Transform3D(0.284701, -0.579432, 0.763678, 0, 0.796646, 0.604446, -0.958616, -0.172087, 0.226806, 28.3698, 9.28153, 6.47672)
 
 [node name="Platform" parent="." instance=ExtResource("4_771as")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98784, -4.76837e-07, -6.03521)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
+
+[node name="PlatformSpawner" parent="." instance=ExtResource("6_dr8od")]
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
